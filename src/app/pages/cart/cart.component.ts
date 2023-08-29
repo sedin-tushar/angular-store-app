@@ -36,10 +36,29 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService) { }
   ngOnInit(): void {
-    this.dataSource = this.cart.items;
+    this.cartService.cart.subscribe((_cart: Cart)=>{
+      this.cart = _cart;
+      this.dataSource = this.cart.items;
+    });
   }
 
   getTotal(items: Array<CartItem>): number {
     return this.cartService.getTotal(items);
+  }
+
+  onClearAllCart(): void{
+    this.cartService.clearCart()
+  }
+
+  onRemoveItemCart(item: CartItem): void {
+    this.cartService.removeItemCart(item);
+  }
+
+  RemoveQuantityCart(item: CartItem): void {
+    this.cartService.removeItemQuantityCart(item);
+  }
+
+  AddQuantityCart(item: CartItem): void {
+    this.cartService.addToCart(item);
   }
 }
