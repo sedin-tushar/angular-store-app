@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   category: string | undefined;
   products: Array<Product> | undefined;
   sort = 'desc';
-  limit= '12';
+  count= '12';
   ProductsSubscription: Subscription | undefined;
 
   constructor(private cartService: CartService, private storeService: StoreService){}
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getProducts(): void {
-    this.ProductsSubscription = this.storeService.getAllProducts(this.limit, this.sort).subscribe((_products) => {
+    this.ProductsSubscription = this.storeService.getAllProducts(this.count, this.sort).subscribe((_products) => {
       this.products = _products;
     });
   }
@@ -53,4 +53,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       id: product.id
     });
   }
+  onItemsCountChange(newcount: number): void{
+    this.count = newcount.toString();
+    this.getProducts();
+  }
+  onSortChange(newsort: string): void{
+    this.sort = newsort;
+    this.getProducts();
+  }
+
+
 }

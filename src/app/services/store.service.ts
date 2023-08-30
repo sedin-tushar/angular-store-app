@@ -12,9 +12,9 @@ export class StoreService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllProducts(limits ='12', sort = 'desc'): Observable<Array<Product>>{
+  getAllProducts(limit = '12', sort = 'desc'): Observable<Array<Product>>{
     return this.httpClient.get<Array<Product>>(
-      `${STORE_BASE_URL}/products?sort=${sort}&limit={$limit}`
+      `${STORE_BASE_URL}/products?sort=${sort}&limit=${limit}`
     );
   }
 }
