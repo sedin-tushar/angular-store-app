@@ -24,6 +24,7 @@ import { ProductBoxComponent } from './pages/home/components/product-box/product
 import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatBadgeModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent]
